@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1051530777638",
+    "firebase_url": "https://vietanh-38a14-default-rtdb.firebaseio.com",
+    "project_id": "vietanh-38a14",
+    "storage_bucket": "vietanh-38a14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051530777638:android:e5b50408c1d46ce66302e7",
+        "android_client_info": {
+          "package_name": "vn.posicode.chuyende"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3R7svSJxeW2PpTv5yBcfMyFIWP45ncrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051530777638:android:a626314d70583f3b6302e7",
+        "android_client_info": {
+          "package_name": "vn.posicode.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3R7svSJxeW2PpTv5yBcfMyFIWP45ncrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051530777638:android:bc96894674beea256302e7",
+        "android_client_info": {
+          "package_name": "vn.vietanhnguyen.didong2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3R7svSJxeW2PpTv5yBcfMyFIWP45ncrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

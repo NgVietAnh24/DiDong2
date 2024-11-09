@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bo góc -->
+    <corners android:radius="12dp" />
+
+    <!-- Viền -->
+    <stroke
+        android:width="2dp"
+        android:color="#A01111" />
+
+    <!-- Màu nền cho ImageView nếu cần -->
+    <solid android:color="@android:color/white" />
+</shape>

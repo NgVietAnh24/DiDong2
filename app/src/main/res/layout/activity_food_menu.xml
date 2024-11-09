@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F9F9F9"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tableNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên Bàn"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="18dp"/>
+
+        <TextView
+            android:id="@+id/tableDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mô Tả Bàn"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/back"
+            android:scaleType="fitXY"
+            android:contentDescription="Back button" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutSearch"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_edt"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:alpha="0.5"
+                android:background="@null"
+                android:hint="Tìm kiếm..."
+                android:padding="5dp"
+                android:textColor="@color/textColorTitle"
+                android:textColorHint="#BD6060"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tất cả"
+            android:backgroundTint="@color/textFood"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="4dp"
+            android:padding="6dp"/>
+
+        <Button
+            android:id="@+id/btn_hotpot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Món Lẩu"
+            android:backgroundTint="@color/textFood"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="4dp"
+            android:padding="6dp"/>
+
+        <Button
+            android:id="@+id/btn_grill"
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Món nướng"
+            android:backgroundTint="@color/textFood"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="4dp"
+            android:padding="6dp"/>
+
+        <Button
+            android:id="@+id/btn_drinks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đồ uống"
+            android:backgroundTint="@color/textFood"
+            android:textColor="@android:color/white"
+            android:padding="6dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFoods"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_selected_items"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Món đã chọn"
+            android:backgroundTint="@color/textFood"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:padding="12dp"/>
+
+        <Button
+            android:id="@+id/btn_reserve"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đặt trước"
+            android:backgroundTint="@color/textFood"
+            android:textColor="@android:color/white"
+            android:padding="12dp"/>
+    </LinearLayout>
+</LinearLayout>

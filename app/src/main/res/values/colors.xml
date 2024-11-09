@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="textColor">#FFFFFFFF</color>
+    <color name="textColorTitle">#830F0F</color>
+    <color name="borderEdt">#A01111</color>
+    <color name="backgroundColorBtn">#C71818</color>
+    <color name="textRole">#808080</color>
+    <color name="item_background">#F7E9E9</color>
+    <color name="textFood">#A01111</color>
+    <color name="textPrice">#BE1919</color>
+    <color name="green">#14E90D</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_red">#A01111</color>
+    <color name="grey">#8E8A8A</color>
+    <color name="light_pink">#F7E9E9</color>
+    <color name="red">#FF0000</color>
+    <color name="yellow">#FFA500</color>
+
+</resources>

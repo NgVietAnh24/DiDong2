@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="12dp"
+    android:background="#FFEAEA"
+    android:layout_marginBottom="8dp">
+
+    <!-- Trạng thái bàn -->
+    <ImageView
+        android:id="@+id/tableStatusImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Trạng thái bàn"
+        android:layout_marginEnd="12dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tableNameTextV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên bàn"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#D43B3B" />
+
+        <TextView
+            android:id="@+id/tableDescriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mô tả bàn"
+            android:textSize="14sp"
+            android:textColor="#666666" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xóa"
+        android:backgroundTint="#D43B3B"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="12dp"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="12dp" />
+</LinearLayout>

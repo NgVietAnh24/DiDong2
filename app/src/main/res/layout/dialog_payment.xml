@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/dialog_background">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tính tiền"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#B71C1C"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/totalAmountLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tổng tiền cần thanh toán:"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/totalAmountValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0.00$"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#B71C1C"
+        android:layout_marginBottom="16dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp">
+
+        <EditText
+            android:id="@+id/edtTienThu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập tiền thu"
+            android:inputType="numberDecimal"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:backgroundTint="#B71C1C" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnThanhToan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán"
+        android:textSize="18sp"
+        android:backgroundTint="#B71C1C"
+        android:textColor="#FFFFFF"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:text="✖"
+        android:textSize="20sp"
+        android:backgroundTint="#B71C1C"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

@@ -1,0 +1,178 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activities.manages.QLMonAn">
+
+
+    <!--    Phần tiêu đề-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!--        Button Back-->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back"
+
+            />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Quản lý món ăn"
+            android:textColor="#A01111"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!--        Nút tùy chọn-->
+        <ImageView
+            android:id="@+id/btnoptions"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Tùy chọn"
+            android:src="@drawable/options"
+
+            />
+
+    </LinearLayout>
+
+
+    <!--    Hiển thị danh sách món ăn-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!--        Nút imageView để tải ảnh-->
+        <ImageView
+            android:id="@+id/upload"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="18dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/vien_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/upload" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <!--            EditText Nhâp tên món ăn-->
+            <EditText
+                android:id="@+id/editTextTenMonAn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/vien_edittext"
+                android:fontFamily="sans-serif-medium"
+                android:hint="Tên món ăn"
+                android:minHeight="48dp"
+                android:padding="8dp"
+                android:textColorHint="#A01111" />
+
+            <!--            EditText Nhâp giá món ăn-->
+            <EditText
+                android:id="@+id/editTextGia"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/vien_edittext"
+                android:fontFamily="sans-serif-medium"
+                android:hint="Giá"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:padding="8dp"
+                android:textColorHint="#A01111" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--    Spinner để hiển thị danh mục-->
+    <Spinner
+        android:id="@+id/spinnerDanhMuc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="start" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <!--        Nút Thêm-->
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#B23E3E"
+            android:text="Thêm"
+            android:textColor="@android:color/white" />
+
+        <!--        Nút Xóa-->
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:backgroundTint="#B23E3E"
+            android:enabled="false"
+            android:text="Sửa"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:backgroundTint="#B23E3E"
+            android:enabled="false"
+            android:text="Xóa"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>

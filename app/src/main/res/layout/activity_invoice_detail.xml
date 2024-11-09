@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:background="@android:color/white">
+
+    <!-- Header với nút quay lại và tiêu đề -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Nút quay lại -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_arrow"
+            android:contentDescription="Quay lại" />
+
+        <!-- Tiêu đề hóa đơn -->
+        <TextView
+            android:id="@+id/invoiceTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chi tiết hóa đơn"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Mã hóa đơn -->
+    <TextView
+        android:id="@+id/invoiceIdTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mã hóa đơn: "
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"/>
+
+    <!-- Bảng chi tiết món ăn -->
+    <ListView
+        android:id="@+id/itemsListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="8dp"
+        android:padding="8dp" />
+
+    <!-- Thông tin thanh toán -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/rounded_background"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/customerNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tên khách hàng: "
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/customerPhoneTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số điện thoại: "
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Tổng tiền -->
+        <TextView
+            android:id="@+id/totalTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tổng tiền: 0$"
+            android:textSize="18sp"
+            android:textColor="#FF0000"
+            android:gravity="end"
+            android:paddingEnd="8dp" />
+
+        <!-- Tiền thu -->
+        <TextView
+            android:id="@+id/amountReceivedTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiền thu: 0$"
+            android:textSize="18sp"
+            android:textColor="#FF0000"
+            android:gravity="end"
+            android:paddingEnd="8dp" />
+
+        <!-- Tiền dư -->
+        <TextView
+            android:id="@+id/changeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiền dư: $"
+            android:textSize="18sp"
+            android:textColor="#FF0000"
+            android:gravity="end"
+            android:paddingEnd="8dp" />
+    </LinearLayout>
+
+    <!-- Nút thanh toán -->
+    <Button
+        android:id="@+id/paymentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thanh toán"
+        android:backgroundTint="#B71C1C"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        android:padding="12dp" />
+
+    <!-- Thời gian tạo hóa đơn với hình nền -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_menu"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:alpha="0.2" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/invoiceTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/invoiceDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24/09/2024"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

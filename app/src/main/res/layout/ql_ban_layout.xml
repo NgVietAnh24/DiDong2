@@ -1,0 +1,124 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="0dp"
+    tools:context=".activities.manages.QLBan">
+
+    <!-- Header chứa nút back và tiêu đề -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/backButtonBan"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/back"
+            android:scaleType="fitXY"
+            android:contentDescription="Back button" />
+
+        <TextView
+            android:id ="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quản lý bàn"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#D43B3B"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+
+    <!-- Input để nhập thông tin bàn -->
+    <EditText
+        android:id="@+id/editTextTableName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ví dụ: Bàn 1, Bàn 2, Bàn vip, ..."
+        android:textColorHint="#D43B3B"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="#000000" />
+
+    <EditText
+        android:id="@+id/editTextTableDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ví dụ: 2 - 4 người, 3 - 7 người, ..."
+        android:textColorHint="#D43B3B"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:textColor="#000000" />
+
+    <!-- Nút Thêm và Sửa bàn -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginVertical="16dp">
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Thêm"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:backgroundTint="#D43B3B"
+            android:layout_marginEnd="8dp"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Sửa"
+            android:enabled="false"
+            android:alpha="0.5"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:backgroundTint="#D43B3B"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <!-- Tiêu đề cho danh sách bàn -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danh sách bàn"
+        android:textColor="#D43B3B"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- ScrollView để cuộn danh sách bàn -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="16dp">
+
+        <LinearLayout
+            android:id="@+id/tableListLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
