@@ -1,4 +1,4 @@
-package vn.vietanhnguyen.didong2;
+package vn.vietanhnguyen.didong2.activities.homes;
 
 
 import android.content.BroadcastReceiver;
@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import vn.vietanhnguyen.didong2.R;
 import vn.vietanhnguyen.didong2.activities.FoodMenuActivity;
 import vn.vietanhnguyen.didong2.activities.login_forgot.Login;
 import vn.vietanhnguyen.didong2.activities.manages.InvoiceListActivity;
@@ -37,7 +38,6 @@ import vn.vietanhnguyen.didong2.activities.manages.QLBan;
 import vn.vietanhnguyen.didong2.activities.manages.QLMonAn;
 import vn.vietanhnguyen.didong2.activities.manages.QLNhanVien;
 import vn.vietanhnguyen.didong2.activities.manages.QLThongKe;
-import vn.vietanhnguyen.didong2.models.Ban;
 
 public class HomeQuanLy extends AppCompatActivity {
     FirebaseAuth mAuth;

@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import vn.vietanhnguyen.didong2.HomeQuanLy;
+import vn.vietanhnguyen.didong2.activities.homes.HomeQuanLy;
 import vn.vietanhnguyen.didong2.R;
 import vn.vietanhnguyen.didong2.activities.Loading;
 import vn.vietanhnguyen.didong2.activities.homes.HomeNhanVien;

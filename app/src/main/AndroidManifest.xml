@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeQuanLy"
+            android:name=".activities.homes.HomeQuanLy"
             android:exported="false" />
         <activity
             android:name=".activities.manages.QLBan"

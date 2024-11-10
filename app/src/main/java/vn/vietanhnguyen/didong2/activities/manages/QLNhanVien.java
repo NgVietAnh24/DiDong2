@@ -55,7 +55,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import vn.vietanhnguyen.didong2.HomeQuanLy;
+import vn.vietanhnguyen.didong2.activities.homes.HomeQuanLy;
 import vn.vietanhnguyen.didong2.R;
 import vn.vietanhnguyen.didong2.adapters.NguoiDungAdapter;
 import vn.vietanhnguyen.didong2.models.NguoiDung;
