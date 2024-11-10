@@ -348,11 +348,25 @@ public class HomeQuanLy extends AppCompatActivity {
 
     private void updateTableUI(String tableName, String status) {
         LinearLayout tableListLayout = findViewById(R.id.tableListLayout);
+        if (tableListLayout == null) {
+            // Log lỗi hoặc xử lý khi không tìm thấy layout
+            return;
+        }
+
         for (int i = 0; i < tableListLayout.getChildCount(); i++) {
             View tableView = tableListLayout.getChildAt(i);
+
             TextView tableNameTextView = tableView.findViewById(R.id.tableNameTextView);
+            if (tableNameTextView == null) {
+                continue; // Bỏ qua tableView này nếu không tìm thấy tableNameTextView
+            }
+
             if (tableNameTextView.getText().toString().equals(tableName)) {
                 ImageView tableStatusImage = tableView.findViewById(R.id.tableStatusImage);
+                if (tableStatusImage == null) {
+                    continue; // Bỏ qua tableView này nếu không tìm thấy tableStatusImage
+                }
+
                 switch (status) {
                     case "Đã đặt":
                         tableStatusImage.setImageResource(R.drawable.rounded_trang_thai_da_dat);
@@ -369,6 +383,7 @@ public class HomeQuanLy extends AppCompatActivity {
             }
         }
     }
+
 
 
     public void Event() {

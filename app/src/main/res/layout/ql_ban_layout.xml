@@ -40,7 +40,7 @@
         android:id="@+id/editTextTableName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ví dụ: Bàn 1, Bàn 2, Bàn vip, ..."
+        android:hint="Ví dụ: Bàn 1, Bàn 2, ..."
         android:textColorHint="#D43B3B"
         android:background="@drawable/rounded_edittext"
         android:layout_marginHorizontal="16dp"

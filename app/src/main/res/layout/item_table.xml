@@ -8,11 +8,11 @@
     android:background="#FFEAEA"
     android:layout_marginBottom="8dp">
 
-    <!-- Trạng thái bàn -->
     <ImageView
         android:id="@+id/tableStatusImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
         android:contentDescription="Trạng thái bàn"
         android:layout_marginEnd="12dp" />
 

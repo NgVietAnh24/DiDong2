@@ -1,14 +1,15 @@
 package vn.vietanhnguyen.didong2.activities.homes;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ public class HomeNhanVien extends AppCompatActivity {
 
     private FirebaseFirestore firestore;
     private BroadcastReceiver updateTableReceiver;
+    private EditText edtSearch;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,8 @@ public class HomeNhanVien extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
         firestore = FirebaseFirestore.getInstance();
+
+        edtSearch = findViewById(R.id.edtSearch);
 
         loadTableData();
 
@@ -61,7 +65,83 @@ public class HomeNhanVien extends AppCompatActivity {
 
         IntentFilter filter = new IntentFilter("UPDATE_TABLE_STATUS");
         registerReceiver(updateTableReceiver, filter);
+
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filterTables(editable.toString());
+            }
+        });
     }
+
+    private void filterTables(String keyword) {
+        firestore.collection("tables")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        List<DocumentSnapshot> filteredList = new ArrayList<>();
+                        for (DocumentSnapshot document : task.getResult()) {
+                            String name = document.getString("name");
+                            if (name != null && name.toLowerCase().contains(keyword.toLowerCase())) {
+                                filteredList.add(document);
+                            }
+                        }
+
+                        // Sắp xếp danh sách dựa trên số trong tên bàn
+                        Collections.sort(filteredList, (t1, t2) -> {
+                            String name1 = t1.getString("name");
+                            String name2 = t2.getString("name");
+
+                            if (name1 == null) return -1;
+                            if (name2 == null) return 1;
+
+                            try {
+                                String num1 = name1.replaceAll("[^0-9]", "");
+                                String num2 = name2.replaceAll("[^0-9]", "");
+
+                                if (num1.isEmpty()) return -1;
+                                if (num2.isEmpty()) return 1;
+
+                                return Integer.compare(
+                                        Integer.parseInt(num1),
+                                        Integer.parseInt(num2)
+                                );
+                            } catch (NumberFormatException e1) {
+                                return name1.compareTo(name2);
+                            }
+                        });
+
+                        updateTableList(filteredList);
+                    } else {
+                        Log.d("filterTables", "Error getting documents: ", task.getException());
+                    }
+                });
+    }
+
+    private void updateTableList(List<DocumentSnapshot> tableList) {
+        LinearLayout tableListLayout = findViewById(R.id.tableListLayout);
+        tableListLayout.removeAllViews();
+        for (DocumentSnapshot document : tableList) {
+            String tableName = document.getString("name");
+            String tableDescription = document.getString("description");
+            String tableStatus = document.getString("status");
+            if (tableName != null && tableDescription != null && tableStatus != null) {
+                addTableToLayout(tableName, tableDescription, tableStatus);
+            }
+        }
+    }
+
+
 
     @Override
     protected void onDestroy() {
