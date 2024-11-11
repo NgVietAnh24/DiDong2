@@ -35,7 +35,7 @@ public class InvoiceDetailActivity extends AppCompatActivity {
     private Invoice selectedInvoice;
 
     private TextView titleTextView, timeTextView, dateTextView, totalTextView, amountReceivedTextView, changeTextView;
-    private TextView customerNameTextView, customerPhoneTextView;
+    private TextView customerNameTextView, customerPhoneTextView, note;
     private TextView invoiceIdTextView; // Thêm biến này
     private Button paymentButton;
     private ListView itemsListView;
@@ -73,6 +73,7 @@ public class InvoiceDetailActivity extends AppCompatActivity {
         invoiceIdTextView = findViewById(R.id.invoiceIdTextView); // Khởi tạo TextView cho mã hóa đơn
         paymentButton = findViewById(R.id.paymentButton);
         itemsListView = findViewById(R.id.itemsListView);
+        note = findViewById(R.id.note);
 
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> onBackPressed());
@@ -160,6 +161,8 @@ public class InvoiceDetailActivity extends AppCompatActivity {
                     (selectedInvoice.getCustomerName() != null ? selectedInvoice.getCustomerName() : "N/A"));
             customerPhoneTextView.setText("Số điện thoại: " +
                     (selectedInvoice.getCustomerPhone() != null ? selectedInvoice.getCustomerPhone() : "N/A"));
+            note.setText("Ghi chú: " +
+                    (selectedInvoice.getNote() != null ? selectedInvoice.getNote() : "N/A"));
 
             String paymentStatus = selectedInvoice.getPaymentStatus();
             if (paymentStatus != null && paymentStatus.equals("Đã thanh toán")) {

@@ -181,87 +181,123 @@ public class HomeQuanLy extends AppCompatActivity {
                     }
 
                     if (snapshots != null) {
-                        // Xóa dữ liệu cũ và cập nhật danh sách allTableList
-                        allTableList.clear();
+                        // Sử dụng danh sách tạm để lưu dữ liệu từ Firestore
+                        List<QueryDocumentSnapshot> tempTableList = new ArrayList<>();
                         for (DocumentSnapshot document : snapshots.getDocuments()) {
                             if (document instanceof QueryDocumentSnapshot) {
-                                allTableList.add((QueryDocumentSnapshot) document);
+                                tempTableList.add((QueryDocumentSnapshot) document);
                             }
                         }
 
-                        // Lọc danh sách bàn nếu có từ khóa tìm kiếm
+                        // Gán dữ liệu từ danh sách tạm vào allTableList
+                        allTableList.clear();
+                        allTableList.addAll(tempTableList);
+
+                        // Thực hiện tìm kiếm và sắp xếp danh sách
                         String searchQuery = edtSearch.getText().toString().trim().toLowerCase();
-                        List<QueryDocumentSnapshot> displayList;
-                        if (searchQuery.isEmpty()) {
-                            // Không có từ khóa tìm kiếm: hiển thị toàn bộ danh sách
-                            displayList = new ArrayList<>(allTableList);
-                        } else {
-                            // Có từ khóa tìm kiếm: lọc danh sách bàn
-                            displayList = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : allTableList) {
-                                String tableName = document.getString("name");
-                                if (tableName != null && tableName.toLowerCase().contains(searchQuery)) {
-                                    displayList.add(document);
-                                }
-                            }
-                        }
+                        List<QueryDocumentSnapshot> displayList = filterAndSortTables(searchQuery);
 
-                        // Sắp xếp danh sách (dù có hay không có tìm kiếm)
-                        Collections.sort(displayList, (t1, t2) -> {
-                            String name1 = t1.getString("name");
-                            String name2 = t2.getString("name");
-
-                            if (name1 == null) return -1;
-                            if (name2 == null) return 1;
-
-                            try {
-                                String num1 = name1.replaceAll("[^0-9]", "");
-                                String num2 = name2.replaceAll("[^0-9]", "");
-
-                                if (num1.isEmpty()) return -1;
-                                if (num2.isEmpty()) return 1;
-
-                                return Integer.compare(
-                                        Integer.parseInt(num1),
-                                        Integer.parseInt(num2)
-                                );
-                            } catch (NumberFormatException e1) {
-                                return name1.compareTo(name2);
-                            }
-                        });
-
-                        // Xóa các bàn cũ và thêm bàn mới đã lọc và sắp xếp
-                        LinearLayout tableListLayout = findViewById(R.id.tableListLayout);
-                        tableListLayout.removeAllViews();
-                        for (QueryDocumentSnapshot document : displayList) {
-                            String tableName = document.getString("name");
-                            String tableDescription = document.getString("description");
-                            String tableStatus = document.getString("status");
-
-                            if (tableName != null && tableDescription != null && tableStatus != null) {
-                                addTableToLayout(tableName, tableDescription, tableStatus);
-                            }
-                        }
+                        // Cập nhật giao diện
+                        updateTableLayout(displayList);
                     }
                 });
     }
+
+    private List<QueryDocumentSnapshot> filterAndSortTables(String searchQuery) {
+        List<QueryDocumentSnapshot> displayList = new ArrayList<>();
+        for (QueryDocumentSnapshot document : allTableList) {
+            String tableName = document.getString("name");
+            if (tableName != null && tableName.toLowerCase().contains(searchQuery)) {
+                displayList.add(document);
+            }
+        }
+
+        // Sắp xếp danh sách dựa trên số trong tên bàn
+        Collections.sort(displayList, (t1, t2) -> {
+            String name1 = t1.getString("name");
+            String name2 = t2.getString("name");
+
+            if (name1 == null) return -1;
+            if (name2 == null) return 1;
+
+            try {
+                String num1 = name1.replaceAll("[^0-9]", "");
+                String num2 = name2.replaceAll("[^0-9]", "");
+
+                if (num1.isEmpty()) return -1;
+                if (num2.isEmpty()) return 1;
+
+                return Integer.compare(Integer.parseInt(num1), Integer.parseInt(num2));
+            } catch (NumberFormatException e) {
+                return name1.compareTo(name2);
+            }
+        });
+        return displayList;
+    }
+
+    private void updateTableLayout(List<QueryDocumentSnapshot> displayList) {
+        LinearLayout tableListLayout = findViewById(R.id.tableListLayout);
+        tableListLayout.removeAllViews();
+        for (QueryDocumentSnapshot document : displayList) {
+            String tableName = document.getString("name");
+            String tableDescription = document.getString("description");
+            String tableStatus = document.getString("status");
+
+            if (tableName != null && tableDescription != null && tableStatus != null) {
+                addTableToLayout(tableName, tableDescription, tableStatus);
+            }
+        }
+    }
+
 
 
 
     private void filterTables(String query) {
         LinearLayout tableListLayout = findViewById(R.id.tableListLayout);
-        tableListLayout.removeAllViews(); // Clear the current view
+        tableListLayout.removeAllViews(); // Xóa các view hiện có
 
+        List<QueryDocumentSnapshot> filteredList = new ArrayList<>();
         for (QueryDocumentSnapshot document : allTableList) {
             String tableName = document.getString("name");
 
             if (tableName != null && tableName.toLowerCase().contains(query.toLowerCase())) {
-                String tableDescription = document.getString("description");
-                String tableStatus = document.getString("status");
-                addTableToLayout(tableName, tableDescription, tableStatus);
+                filteredList.add(document);
             }
         }
+
+        // Sắp xếp danh sách đã lọc theo số thứ tự trong tên bàn
+        Collections.sort(filteredList, (t1, t2) -> {
+            String name1 = t1.getString("name");
+            String name2 = t2.getString("name");
+
+            if (name1 == null) return -1;
+            if (name2 == null) return 1;
+
+            try {
+                String num1 = name1.replaceAll("[^0-9]", "");
+                String num2 = name2.replaceAll("[^0-9]", "");
+
+                if (num1.isEmpty()) return -1;
+                if (num2.isEmpty()) return 1;
+
+                return Integer.compare(
+                        Integer.parseInt(num1),
+                        Integer.parseInt(num2)
+                );
+            } catch (NumberFormatException e) {
+                return name1.compareTo(name2);
+            }
+        });
+
+        // Hiển thị các bàn đã lọc và sắp xếp
+        for (QueryDocumentSnapshot document : filteredList) {
+            String tableName = document.getString("name");
+            String tableDescription = document.getString("description");
+            String tableStatus = document.getString("status");
+            addTableToLayout(tableName, tableDescription, tableStatus);
+        }
     }
+
 
 
     @Override

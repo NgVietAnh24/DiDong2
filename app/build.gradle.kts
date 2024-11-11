@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "vn.vietanhnguyen.didong2"
-    compileSdk = 34
+    compileSdk = 34  // Tối ưu hóa cho Android 14
 
     defaultConfig {
         applicationId = "vn.vietanhnguyen.didong2"
-        minSdk = 31
-        targetSdk = 34
+        minSdk = 30  // Hỗ trợ từ Android 11 (API 30) trở lên
+        targetSdk = 34  // Android 14
         versionCode = 1
         versionName = "1.0"
 

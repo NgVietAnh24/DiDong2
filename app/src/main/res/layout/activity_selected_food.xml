@@ -62,11 +62,11 @@
             android:layout_height="80dp"
             android:gravity="top|start"
             android:hint="Nhập ghi chú"
+            android:textColor="@color/black"
             android:padding="8dp"
             android:backgroundTint="@android:color/white" />
     </LinearLayout>
 
-    <!-- Nút dưới cùng -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
