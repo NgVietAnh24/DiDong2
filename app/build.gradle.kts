@@ -12,7 +12,7 @@ android {
         minSdk = 30  // Hỗ trợ từ Android 11 (API 30) trở lên
         targetSdk = 34  // Android 14
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

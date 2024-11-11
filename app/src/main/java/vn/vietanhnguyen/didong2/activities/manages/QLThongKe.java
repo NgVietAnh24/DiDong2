@@ -57,7 +57,6 @@ public class QLThongKe extends AppCompatActivity {
         connectXML();
         doanhThuList = new ArrayList<>();
         yearList = new ArrayList<>();
-        // ghiDuLieu();
         ghiDuLieuTuInVoices();
         docNamTuFireStore();
 
@@ -65,6 +64,7 @@ public class QLThongKe extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedYear = yearList.get(i);
+
                 docDoanhThu(selectedYear);
             }
 
@@ -90,46 +90,6 @@ public class QLThongKe extends AppCompatActivity {
         lineChartDoanhThu.setDragEnabled(true);
         lineChartDoanhThu.setScaleEnabled(false);
     }
-/*
-    //    Ham ghi du lieu
-    private void ghiDuLieu() {
-        Random random = new Random();
-        for (int year = 2022; year <= 2024; year++) {
-            for (int month = 1; month <= 12; month++) {
-                int monthlyIncome = random.nextInt(10000000) + 100;
-                // Tạo đối tượng ThongKeModels
-                ThongKeModels thongKe = new ThongKeModels("tk_" + year + "_" + month, // ID thống kê
-                        monthlyIncome,
-                        year,
-                        month,
-                        "hd_" + year + "_" + month
-                );
-                // Ghi dữ liệu vào Firestore
-                db.collection("thongke").document(thongKe.getTk_id()).set(createDataMap(thongKe)).addOnSuccessListener(aVoid -> {
-                    Log.d("SSS", "Thanh cong");
-                }).addOnFailureListener(e -> {
-
-                    Log.d("SSS", "That bai");
-
-                });
-            }
-        }
-    }
-
-    // Tao datamap cho thongkemodels
-    @NonNull
-    private Map<String, Object> createDataMap(ThongKeModels thongKe) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("tk_id", thongKe.getTk_id());
-        //  data.put("tong_tien_nam", thongKe.getTong_tien_nam());
-        data.put("tong_tien_thang", thongKe.getTong_tien_thang());
-        data.put("nam", thongKe.getNam());
-        data.put("thang", thongKe.getThang());
-        data.put("hd_id", thongKe.getHd_id());
-        return data;
-    }
-
- */
 
     //    Doc du lieu nam de truyen vao spinner
     private void docNamTuFireStore() {
@@ -142,9 +102,13 @@ public class QLThongKe extends AppCompatActivity {
                         yearList.add(String.valueOf(year)); // Thêm năm vào danh sách
                     }
                 }
+                yearList.sort((y1, y2) -> Integer.parseInt(y2) - Integer.parseInt(y1));
                 adapterYear = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, yearList);
                 adapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinYear.setAdapter(adapterYear);
+
+                spinYear.setSelection(0);
+                docDoanhThu(yearList.get(0));
             }
         });
     }
@@ -200,7 +164,7 @@ public class QLThongKe extends AppCompatActivity {
 //Cap nhat gia tri trục Y
         YAxis yAxis = lineChartDoanhThu.getAxisLeft();
         yAxis.setAxisMinimum(10000);
-        yAxis.setAxisMaximum(10000000);
+        yAxis.setAxisMaximum(100000000);
         yAxis.setTextColor(Color.RED);
 //Cap nhat gia tri truc X
         XAxis xAxis = lineChartDoanhThu.getXAxis();
@@ -231,34 +195,36 @@ public class QLThongKe extends AppCompatActivity {
                 Map<String, Double> monthlyTotals = new HashMap<>();
                 Map<String, List<String>> monthlyHdIds = new HashMap<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    double tongTien = document.getDouble("tong_tien");
-                    String hdId = document.getId();
-                    Date ngayTaoDate = null;
-                    if (document.contains("ngay_tao")) {
-                        String ngayTaoString = document.getString("ngay_tao");
+                    Double tongTien = document.getDouble("tong_tien");
+                    if (tongTien != null) {
+                        String hdId = document.getId();
+                        Date ngayTaoDate = null;
+                        if (document.contains("ngay_tao")) {
+                            String ngayTaoString = document.getString("ngay_tao");
 
-                        if (ngayTaoString != null) {
-                            try {
-                                // Giả sử ngày được lưu dưới dạng "dd/MM/yyyy"
-                                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                                ngayTaoDate = sdf.parse(ngayTaoString);
-                            } catch (Exception e) {
-                                Log.w("Firestore", "Lỗi khi chuyển đổi ngày: " + ngayTaoString, e);
+                            if (ngayTaoString != null) {
+                                try {
+                                    // Giả sử ngày được lưu dưới dạng "dd/MM/yyyy"
+                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                                    ngayTaoDate = sdf.parse(ngayTaoString);
+                                } catch (Exception e) {
+                                    Log.w("Firestore", "Lỗi khi chuyển đổi ngày: " + ngayTaoString, e);
+                                }
                             }
                         }
-                    }
-                    // Nếu có ngày tạo hợp lệ, tiếp tục xử lý
-                    if (ngayTaoDate != null) {
-                        Calendar cal = Calendar.getInstance();
-                        cal.setTime(ngayTaoDate);
-                        int thang = cal.get(Calendar.MONTH) + 1;
-                        int nam = cal.get(Calendar.YEAR);
-                        String monthKey = nam + "_" + thang;
-                        monthlyTotals.put(monthKey, monthlyTotals.getOrDefault(monthKey, 0.0) + tongTien);
-                        monthlyHdIds.putIfAbsent(monthKey, new ArrayList<>());
-                        monthlyHdIds.get(monthKey).add(hdId);
-                    } else {
-                        Log.w("Firestore", "Trường 'ngay_tao' không hợp lệ trong tài liệu HoaDon với ID: " + hdId);
+                        // Nếu có ngày tạo hợp lệ, tiếp tục xử lý
+                        if (ngayTaoDate != null) {
+                            Calendar cal = Calendar.getInstance();
+                            cal.setTime(ngayTaoDate);
+                            int thang = cal.get(Calendar.MONTH) + 1;
+                            int nam = cal.get(Calendar.YEAR);
+                            String monthKey = nam + "_" + thang;
+                            monthlyTotals.put(monthKey, monthlyTotals.getOrDefault(monthKey, 0.0) + tongTien);
+                            monthlyHdIds.putIfAbsent(monthKey, new ArrayList<>());
+                            monthlyHdIds.get(monthKey).add(hdId);
+                        } else {
+                            Log.w("Firestore", "Trường 'ngay_tao' không hợp lệ trong tài liệu HoaDon với ID: " + hdId);
+                        }
                     }
                 }
                 // Tạo thống kê cho từng tháng
